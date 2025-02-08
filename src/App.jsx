@@ -7,7 +7,6 @@ import Toolbox from './components/toolbox'
 import Header from './components/header'
 import HistoryBox from './components/history'
 import ToolWorkbench from './components/workbench'
-import NucleotideAndProteinFetcher from './components/fectcher'
 import GeneCodeViewer from './components/getCode'
 
 

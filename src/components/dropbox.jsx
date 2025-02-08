@@ -3,11 +3,16 @@ import { Button } from "./button";
 import { Input } from "./input";
 import GeneCodeViewer from "./getCode";
 
-const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem }) => {
+const Dropbox = ({
+  dropData,
+  handleworkupdate,
+  handledropupdate,
+  handleRemoveItem,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [newCode, setNewCode] = useState(null);
-  
+
   const [filteredData, setFilteredData] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]); // Stores selected items
   const [viewingItem, setViewingItem] = useState(null); // Stores item details when clicked
@@ -41,20 +46,17 @@ const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem
     setSelectedItems(dropData.filter((item) => item.selected)); // Ensure selected items stay in sync
   }, [dropData]);
 
-
- 
-
   // Handle checkbox selection
   const toggleSelection = (item) => {
     setSelectedItems((prev) => {
-      const exists = prev.some((selected) => selected.organism === item.organism);
+      const exists = prev.some(
+        (selected) => selected.organism === item.organism
+      );
       const updatedSelection = exists
         ? prev.filter((selected) => selected.organism !== item.organism)
         : [...prev, item];
 
-        
-      
-       // Update parent component state
+      // Update parent component state
       return updatedSelection;
     });
   };
@@ -63,11 +65,10 @@ const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem
     handleworkupdate(selectedItems);
   }, [selectedItems, handleworkupdate]);
 
-
   return (
     <>
       {/* Dropbox Component */}
-      <div className="relative w-80 p-4 border rounded-lg shadow-lg left-[12vw] h-[45vh] bg-white">
+      <div className="relative w-80 p-4 border rounded-lg left-[15vw] top-[2vw] h-[40vh] bg-white">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Dropbox</h2>
           <button
@@ -88,9 +89,16 @@ const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem
         />
 
         {/* Add New Code Button */}
-        <Button className="mb-4" onClick={handleAddCode}>
+        <Button className="mb-1" onClick={handleAddCode}>
           + Add new code
         </Button>
+        {/* Header Row*/}
+        <div className="flex items-center justify-between px-3 py-1 border-b bg-gray-200 text-[10px] font-medium text-gray-600">
+          <span className="w-14 text-left">Select</span>
+          <span className="flex-1 text-center">Name of Code</span>
+          <span className="w-14 text-center">View</span>
+          <span className="w-14 text-center">Remove</span>
+        </div>
 
         {/* List of Items */}
         <ul className="max-h-64 overflow-y-auto border-t pt-2">
@@ -102,7 +110,9 @@ const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem
               {/* Checkbox for selection */}
               <input
                 type="checkbox"
-                checked={selectedItems.some((selected) => selected.organism === item.organism)}
+                checked={selectedItems.some(
+                  (selected) => selected.organism === item.organism
+                )}
                 onChange={() => toggleSelection(item)}
                 className="mr-2"
               />
@@ -139,9 +149,7 @@ const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem
               {/* Remove Item Button (Cross Icon) */}
               <button
                 className="text-red-500 hover:text-red-700 ml-2"
-                onClick={() =>
-                  handleRemoveItem(index)
-                }
+                onClick={() => handleRemoveItem(index)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +171,9 @@ const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem
         </ul>
 
         {/* Modal for adding new code */}
-        {showModal && <GeneCodeViewer setShowModal={setShowModal} onSubmit={setNewCode} />}
+        {showModal && (
+          <GeneCodeViewer setShowModal={setShowModal} onSubmit={setNewCode} />
+        )}
       </div>
 
       {/* Details View (Centered in the body) */}
@@ -173,7 +183,7 @@ const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem
             <h3 className="text-xl font-bold mb-2">{viewingItem.organism}</h3>
             <p className="text-gray-700">{viewingItem.sequence}</p>
 
-            {/* Close Button (Cross Icon) */}
+            {/* Close Button (Cross Icon)
             <button
               className="mt-4 bg-red-500 text-white px-4 py-2 rounded flex items-center"
               onClick={() => setViewingItem(null)}
@@ -193,7 +203,7 @@ const Dropbox = ({ dropData,handleworkupdate, handledropupdate, handleRemoveItem
                 />
               </svg>
               Close
-            </button>
+            </button> */}
           </div>
         </div>
       )}

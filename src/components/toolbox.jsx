@@ -15,7 +15,7 @@ const Toolbox = ({ tools, onToolSelect }) => {
   };
 
   return (
-    <div className="relative w-80 p-4 border rounded-lg shadow-lg left-[12vw] h-[45vh]">
+    <div className="relative w-80 p-4 border rounded-lg left-[15vw] h-[45vh] top-[3vw]">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Tools</h2>
         <button
