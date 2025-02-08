@@ -28,10 +28,10 @@ const GeneCodeViewer = ({ setShowModal, onSubmit }) => {
     setGeneData([x]);
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(viewingGene.sequence);
-    alert("Copied to clipboard!");
-  };
+  // const copyToClipboard = () => {
+  //   navigator.clipboard.writeText(viewingGene.sequence);
+  //   alert("Copied to clipboard!");
+  // };
 
   const handleSelect = (gene) => {
     if (selectedData.includes(gene.id)) {
